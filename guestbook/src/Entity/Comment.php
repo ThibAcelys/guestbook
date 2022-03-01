@@ -29,6 +29,7 @@ class Comment
     #[ORM\JoinColumn(nullable: false)]
     private $conference;
 
+
     public function getId(): ?int
     {
         return $this->id;
