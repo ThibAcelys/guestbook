@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\CommentRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraint as Assert;
 
 #[ORM\Entity(repositoryClass: CommentRepository::class)]
 #[ORM\HasLifecycleCallbacks]
@@ -15,12 +16,16 @@ class Comment
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\NotBlank]
     private $author;
 
     #[ORM\Column(type: 'text')]
+    #[Assert\NotBlank]
     private $text;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Email]
     private $email;
 
     #[ORM\Column(type: 'datetime_immutable')]
@@ -29,6 +34,9 @@ class Comment
     #[ORM\ManyToOne(targetEntity: Conference::class, inversedBy: 'comments')]
     #[ORM\JoinColumn(nullable: false)]
     private $conference;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $photofilename;
 
 
     public function __toString(): string
@@ -103,6 +111,18 @@ class Comment
     public function setConference(?Conference $conference): self
     {
         $this->conference = $conference;
+
+        return $this;
+    }
+
+    public function getPhotofilename(): ?string
+    {
+        return $this->photofilename;
+    }
+
+    public function setPhotofilename(?string $photofilename): self
+    {
+        $this->photofilename = $photofilename;
 
         return $this;
     }

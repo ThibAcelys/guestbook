@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Comment;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
@@ -23,22 +24,24 @@ class CommentCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-        yield AssociationField::new('conference');
+                yield AssociationField::new('conference');
                 yield TextField::new('author');
                 yield EmailField::new('email');
                 yield TextareaField::new('text')
                     ->hideOnIndex()
-            ;
-        yield TextField::new('photoFilename')
-                ->onlyOnIndex()
-            ;
+                    ;
+                 yield ImageField::new('photoFilename')
+                     -> setBasePath('/uploads/photos')
+                     ->setLabel('photo')
+                     ->onlyOnIndex()
+                    ;
 
-        $createdAt = DateTimeField::new('createdAt')->setFormTypeOptions([
+                $createdAt = DateTimeField::new('createdAt')->setFormTypeOptions([
                 'html5' => true,
                 'years' => range(date('Y'), date('Y') + 5),
                 'widget' => 'single_text',
-            ]);
-        if (Crud::PAGE_EDIT === $pageName) {
+                 ]);
+                if (Crud::PAGE_EDIT === $pageName) {
                     yield $createdAt->setFormTypeOption('disabled', true);
                 } else {
                     yield $createdAt;
@@ -47,13 +50,13 @@ class CommentCrudController extends AbstractCrudController
 
 
 
-    public function configireCrud(Crud $crud): crud
+    public function configureCrud(Crud $crud): crud
     {
         return $crud
             ->setEntityLabelInSingular('Conference Comment')
             ->setEntityLabelInPlural('Conference Comments')
             ->setSearchFields((['author', 'text', 'email']))
-            ->setDefaultSort(['createAt' => 'DESC'])
+            ->setDefaultSort(['createdAt' => 'DESC'])
             ;
     }
 
