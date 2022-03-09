@@ -4,6 +4,7 @@ namespace App\Message;
 class CommentMessage
 {
 //    Test commentaire
+//Test commentaire 2
     private $id;
     private $reviewUrl;
     private $context;
