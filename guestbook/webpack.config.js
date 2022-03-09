@@ -22,6 +22,22 @@ Encore
      */
     .addEntry('app', './assets/app.js')
 
+    // allow sass/scss files to be processed
+    .enableSassLoader(function (sassOptions) {}, {
+        resolveUrlLoader: false
+    })
+
+    .addLoader({
+        test: /\.(scss)$/,
+        use: [{
+            loader: 'sass-loader' // compiles Sass to CSS
+        }]
+    })
+
+ /*   // uncomment this if you want use jQuery in the following example
+    .autoProvidejQuery()
+*/
+
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
     .enableStimulusBridge('./assets/controllers.json')
 
@@ -56,7 +72,17 @@ Encore
     })
 
     // enables Sass/SCSS support
-    //.enableSassLoader()
+    // .enableSassLoader()
+   /* module.exports = {
+        module: {
+         rules: [
+             {
+                test: /\.css$/i,
+                use: ["style-loader", "css-loader"],
+             },
+         ],
+     },
+    };*/
 
     // uncomment if you use TypeScript
     //.enableTypeScriptLoader()

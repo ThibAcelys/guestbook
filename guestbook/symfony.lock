@@ -134,8 +134,14 @@
     "friendsofphp/proxy-manager-lts": {
         "version": "v1.0.6"
     },
+    "imagine/imagine": {
+        "version": "1.2.4"
+    },
     "laminas/laminas-code": {
         "version": "4.5.1"
+    },
+    "lorenzo/pinky": {
+        "version": "1.0.5"
     },
     "monolog/monolog": {
         "version": "2.3.5"
@@ -570,6 +576,15 @@
     "symfony/service-contracts": {
         "version": "v3.0.0"
     },
+    "symfony/slack-notifier": {
+        "version": "6.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "5.2",
+            "ref": "192bc241a3095c6861353e5a7a652ad35659ca92"
+        }
+    },
     "symfony/stopwatch": {
         "version": "v6.0.5"
     },
@@ -697,8 +712,17 @@
     "theseer/tokenizer": {
         "version": "1.2.1"
     },
+    "tijsverkoyen/css-to-inline-styles": {
+        "version": "2.2.4"
+    },
+    "twig/cssinliner-extra": {
+        "version": "v3.3.5"
+    },
     "twig/extra-bundle": {
         "version": "v3.3.8"
+    },
+    "twig/inky-extra": {
+        "version": "v3.3.5"
     },
     "twig/intl-extra": {
         "version": "v3.3.5"
